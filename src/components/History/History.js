@@ -1,5 +1,5 @@
 // import required modules
-import { Navigation} from "swiper";
+import { Navigation, Grid} from "swiper";
 
 // import Swiper core and required modules
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -14,16 +14,11 @@ import "swiper/css/navigation";
 
 const SwiperList = ({sliderList}) => {
   const slides = [];
-  for (let i = 0; i < sliderList.length; i++) {
-    let classList = 'history__slide-header';
-    if (i % 2) {
-      classList = 'history__slide-header history__slide-header--bottom';
-    }
-  
+  for (let i = 0; i < sliderList.length; i++) { 
     slides.push(
       <SwiperSlide key={`slide-1-${i}`}>
         <div className="history__slide-item">
-          <div className={classList}>
+          <div className='history__slide-header'>
             <h3 className="history__slide-title">{sliderList[i].title}</h3> 
             <p className="history__slide-desc">{sliderList[i].desc}</p>
           </div> 
@@ -39,8 +34,11 @@ const SwiperList = ({sliderList}) => {
           nextEl: '.history__swiper-button-next',
           prevEl: '.history__swiper-button-prev',       
         }} 
+        grid={{
+          rows: 2
+        }}
         slidesPerView={"auto"}
-        modules={[Navigation]}
+        modules={[Navigation, Grid]}
         className="history__swiper-top"
       >
         {slides}
